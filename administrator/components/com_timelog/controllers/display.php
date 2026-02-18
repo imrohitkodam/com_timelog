@@ -8,18 +8,15 @@
 // No direct access
 defined('_JEXEC') or die;
 
-use Joomla\CMS\Filter\InputFilter;
-use Joomla\CMS\Factory;
 use Joomla\CMS\MVC\Controller\BaseController;
-
-require_once JPATH_ADMINISTRATOR . '/components/com_timelog/includes/timelog.php';
+use Joomla\CMS\Factory;
 
 /**
- * Class TimelogController
+ * Display controller class.
  *
  * @since  1.0.0
  */
-class TimelogController extends BaseController
+class TimelogControllerDisplay extends BaseController
 {
 	/**
 	 * The default view.
@@ -33,17 +30,17 @@ class TimelogController extends BaseController
 	 * Method to display a view.
 	 *
 	 * @param   boolean  $cachable   If true, the view output will be cached
-	 * @param   mixed    $urlparams  An array of safe url parameters and their variable types, for valid values see {@link InputFilter::clean()}.
+	 * @param   array    $urlparams  An array of safe url parameters and their variable types
 	 *
-	 * @return   BaseController This object to support chaining.
+	 * @return  BaseController  This object to support chaining.
 	 *
-	 * @since    1.0.0
+	 * @since   1.0.0
 	 */
 	public function display($cachable = false, $urlparams = array())
 	{
 		$app  = Factory::getApplication();
-		$view = $app->getInput()->getCmd('view', 'activities');
-		$app->getInput()->set('view', $view);
+		$view = $app->input->getCmd('view', 'activities');
+		$app->input->set('view', $view);
 
 		return parent::display($cachable, $urlparams);
 	}
